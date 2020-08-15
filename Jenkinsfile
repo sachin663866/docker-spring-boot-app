@@ -43,6 +43,7 @@ pipeline{
             node('eks-master-node'){    
               checkout scm
              sh 'git checkout feature-1.1'
+              sh 'git pull feature-1.1'
              sh 'export KUBECONFIG=~/.kube/config'
              sh 'aws eks --region us-east-1 update-kubeconfig --name terraform-eks-demo'
              sh 'kubectl apply -f deployment.yaml'
